@@ -2,9 +2,7 @@
 return array(
     'error_reporting' => array(
         'subject' => '[Errors][your-app-id-here]',
-        'emails' => array(
-            'you@domain.com'
-        ),
+        'emails' => array(),
         'from_address' => 'you@domian.com',
         'ignore404' => false,
         'ignoreBot404' => false,
