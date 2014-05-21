@@ -6,7 +6,7 @@ return array(
         'from_address' => 'you@domian.com',
         'ignore404' => false,
         'ignoreBot404' => false,
-        'botList' => array(
+        'bot_list' => array(
             'AhrefsBot',
             'bingbot',
             'Ezooms',
