@@ -46,7 +46,7 @@ class ErrorServiceFactory implements FactoryInterface {
         $errorEventManager = new ErrorEventManager();
         $mailService->setEventManager($errorEventManager);
 
-        $service = new ErrorService($serviceLocator->get('Config')['error_reporting']);
+        $service = new ErrorService(new \BitWeb\ErrorReporting\Configuration($serviceLocator->get('Config')['error_reporting']));
         $service->setEventManager($errorEventManager);
         $service->setEvent( MailService::EVENT_SEND_MAIL);
         return $service;
