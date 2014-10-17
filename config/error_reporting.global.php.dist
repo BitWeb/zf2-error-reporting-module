@@ -8,5 +8,6 @@ return array(
         'from_address' => 'you@domian.com',
         'ignore404' => false,
         'ignoreBot404' => false,
+        'ignorablePaths' => array()
     ),
 );

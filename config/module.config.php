@@ -14,6 +14,7 @@ return array(
             'Mail.RU_Bot',
             'YandexBot',
         ),
+        'ignorablePaths' => array()
     ),
     'service_manager' => array(
         'factories' => array(
