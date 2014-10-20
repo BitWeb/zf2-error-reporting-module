@@ -1,6 +1,7 @@
 <?php
 return array(
     'error_reporting' => array(
+        'errorReportingLevel' => E_ALL,
         'subject' => '[Errors][your-app-id-here]',
         'emails' => array(
             'you@domain.com'
