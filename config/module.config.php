@@ -1,9 +1,10 @@
 <?php
 return array(
     'error_reporting' => array(
+        'errorReportingLevel' => E_ALL,
         'subject' => '[Errors][your-app-id-here]',
         'emails' => array(),
-        'from_address' => 'you@domian.com',
+        'from_address' => 'you@domain.com',
         'ignore404' => false,
         'ignoreBot404' => false,
         'bot_list' => array(

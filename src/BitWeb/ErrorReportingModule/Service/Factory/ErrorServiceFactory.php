@@ -8,7 +8,6 @@
 
 namespace BitWeb\ErrorReportingModule\Service\Factory;
 
-
 use BitWeb\ErrorReporting\Service\ErrorService;
 use BitWeb\ErrorReportingModule\ErrorEventManager;
 use BitWeb\Mail\Configuration;
@@ -18,7 +17,6 @@ use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\SmtpOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-
 
 class ErrorServiceFactory implements FactoryInterface {
 
@@ -42,13 +40,13 @@ class ErrorServiceFactory implements FactoryInterface {
         }
 
         $configuration = new Configuration($config['mail']);
-        $mailService = new MailService( $transport, $configuration);
+        $mailService = new MailService($transport, $configuration);
         $errorEventManager = new ErrorEventManager();
         $mailService->setEventManager($errorEventManager);
 
         $service = new ErrorService(new \BitWeb\ErrorReporting\Configuration($serviceLocator->get('Config')['error_reporting']));
         $service->setEventManager($errorEventManager);
-        $service->setEvent( MailService::EVENT_SEND_MAIL);
+        $service->setEvent(MailService::EVENT_SEND_MAIL);
         return $service;
     }
 
