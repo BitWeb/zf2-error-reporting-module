@@ -8,10 +8,7 @@
 
 namespace BitWeb\ErrorReportingModule;
 
-use BitWeb\ErrorReporting\Service\ErrorService;
 use BitWeb\ErrorReportingModule\Exception\RouterNoMatchException;
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -20,17 +17,18 @@ class Module
     public function onBootstrap(MvcEvent $event)
     {
         $eventManager = $event->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array ($this, 'onError'), 50);
-        $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, array ($this, 'onError'), 50);
-        $eventManager->attach(MvcEvent::EVENT_FINISH, array ($this, 'onFinishAfterPostDispatch'));
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'onError'), 50);
+        $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'onError'), 50);
+        $eventManager->attach(MvcEvent::EVENT_FINISH, array($this, 'onFinishAfterPostDispatch'));
 
         $locator = $event->getApplication()->getServiceManager();
         /* @var $errorService \BitWeb\ErrorReporting\Service\ErrorService */
         $errorService = $locator->get('BitWeb\ErrorReporting\Service\ErrorService');
-        $errorService->startErrorHandling($event);
+        $errorService->startErrorHandling();
     }
 
-    public function onError(MvcEvent $event) {
+    public function onError(MvcEvent $event)
+    {
         // if error has been removed
         if ($event->isError() == false) {
             return;
@@ -59,7 +57,8 @@ class Module
 
     }
 
-    public function onFinishAfterPostDispatch(MvcEvent $event) {
+    public function onFinishAfterPostDispatch(MvcEvent $event)
+    {
         $locator = $event->getApplication()->getServiceManager();
         /* @var $errorService \BitWeb\ErrorReporting\Service\ErrorService */
         $errorService = $locator->get('BitWeb\ErrorReporting\Service\ErrorService');
