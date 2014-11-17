@@ -2,13 +2,9 @@
 
 namespace BitWeb\ErrorReportingModule;
 
+use Zend\EventManager\EventManager;
 
-/**
- * Created by PhpStorm.
- * User: priit
- * Date: 6/25/14
- * Time: 4:08 PM
- */
-class ErrorEventManager extends \Zend\EventManager\EventManager implements \BitWeb\ErrorReporting\ErrorEventManager{
+class ErrorEventManager extends EventManager implements \BitWeb\ErrorReporting\ErrorEventManager
+{
 
 }

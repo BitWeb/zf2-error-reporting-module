@@ -1,14 +1,15 @@
 <?php
-return array(
-    'error_reporting' => array(
+
+return [
+    'error_reporting' => [
         'errorReportingLevel' => E_ALL,
         'subject' => '[Errors][your-app-id-here]',
-        'emails' => array(
+        'emails' => [
             'you@domain.com'
-        ),
+        ],
         'from_address' => 'you@domian.com',
         'ignore404' => false,
         'ignoreBot404' => false,
-        'ignorablePaths' => array()
-    ),
-);
+        'ignorablePaths' => []
+    ],
+];

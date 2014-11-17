@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tobre
- * Date: 14.04.14
- * Time: 14:20
- */
 
 namespace BitWeb\ErrorReportingModule\Service\Factory;
 
@@ -18,7 +12,8 @@ use Zend\Mail\Transport\SmtpOptions;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class ErrorServiceFactory implements FactoryInterface {
+class ErrorServiceFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -49,5 +44,4 @@ class ErrorServiceFactory implements FactoryInterface {
         $service->setEvent(MailService::EVENT_SEND_MAIL);
         return $service;
     }
-
 }

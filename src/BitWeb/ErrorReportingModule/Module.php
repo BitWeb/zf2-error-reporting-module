@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tobre
- * Date: 14.04.14
- * Time: 13:19
- */
 
 namespace BitWeb\ErrorReportingModule;
 
@@ -17,9 +11,9 @@ class Module
     public function onBootstrap(MvcEvent $event)
     {
         $eventManager = $event->getApplication()->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'onError'), 50);
-        $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'onError'), 50);
-        $eventManager->attach(MvcEvent::EVENT_FINISH, array($this, 'onFinishAfterPostDispatch'));
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'onError'], 50);
+        $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, [$this, 'onError'], 50);
+        $eventManager->attach(MvcEvent::EVENT_FINISH, [$this, 'onFinishAfterPostDispatch']);
 
         $locator = $event->getApplication()->getServiceManager();
         /* @var $errorService \BitWeb\ErrorReporting\Service\ErrorService */
@@ -54,7 +48,6 @@ class Module
         if ($stopPropagation) {
             $this->onFinishAfterPostDispatch($event);
         }
-
     }
 
     public function onFinishAfterPostDispatch(MvcEvent $event)
