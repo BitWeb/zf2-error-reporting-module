@@ -14,7 +14,7 @@
         "zendframework/zend-servicemanager":"~2.3",
         "zendframework/zend-modulemanager":"~2.3",
         "zendframework/zend-mvc":"~2.3",
-        "bitweb/mail":"~1.1"
+        "bitweb/mail":"dev-php54"
     },
     "autoload": {
         "psr-0": {
