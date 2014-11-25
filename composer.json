@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "bitweb/error-reporting": "1.0.*",
+        "bitweb/error-reporting": "dev-php54",
         "zendframework/zend-servicemanager":"~2.3",
         "zendframework/zend-modulemanager":"~2.3",
         "zendframework/zend-mvc":"~2.3",
