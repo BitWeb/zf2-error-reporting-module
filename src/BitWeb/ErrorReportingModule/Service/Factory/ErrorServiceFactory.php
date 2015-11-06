@@ -24,13 +24,14 @@ class ErrorServiceFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('config');
-        if (!isset($config['mail']) || !isset($config['mail']['smtpOptions'])) {
+
+        if (!$this->hasSmtpOptions($config)) {
             $transport = new Sendmail();
         } else {
             $transport = new Smtp(new SmtpOptions($config['mail']['smtpOptions']));
         }
 
-        if (isset($config['mail']) && isset($config['mail']['smtpOptions'])) {
+        if (array_key_exists('mail', $config) && array_key_exists('smtpOptions', $config['mail'])) {
             unset($config['mail']['smtpOptions']);
         }
 
@@ -42,6 +43,24 @@ class ErrorServiceFactory implements FactoryInterface
         $service = new ErrorService(new \BitWeb\ErrorReporting\Configuration($serviceLocator->get('Config')['error_reporting']));
         $service->setEventManager($errorEventManager);
         $service->setEvent(MailService::EVENT_SEND_MAIL);
+
         return $service;
+    }
+
+    protected function hasSmtpOptions(array $config)
+    {
+        if (!array_key_exists('mail', $config)) {
+            return false;
+        }
+
+        if (!array_key_exists('smtpOptions', $config['mail'])) {
+            return false;
+        }
+
+        if ($config['mail']['smtpOptions'] === null) {
+            return false;
+        }
+
+        return true;
     }
 }
